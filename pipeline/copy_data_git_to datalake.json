@@ -1,0 +1,89 @@
+{
+	"name": "copy_data_git_to datalake",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_input",
+						"type": "DatasetReference",
+						"parameters": {
+							"prelativeURl": {
+								"value": "@variables('vsourcerelativeURL')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_output",
+						"type": "DatasetReference",
+						"parameters": {
+							"pfilename": {
+								"value": "@variables('vfilename')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"variables": {
+			"vsourcerelativeURL": {
+				"type": "String",
+				"defaultValue": "/Naveen-developer14/ADf_Files/raw/refs/heads/main/Customers.csv"
+			},
+			"vfilename": {
+				"type": "String",
+				"defaultValue": "sample.csv"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-05-14T06:56:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

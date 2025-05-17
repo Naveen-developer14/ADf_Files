@@ -1,0 +1,9 @@
+{
+	"name": "sghsh34",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d582cc43-2d79-4257-b299-133ed2f83767",
+		"tenantId": "b521d440-3da4-4df0-b155-75044b805a27"
+	}
+}
