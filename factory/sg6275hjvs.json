@@ -1,0 +1,9 @@
+{
+	"name": "sg6275hjvs",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "68b2cb9c-bbe8-4674-8ecb-3737bfb3b965",
+		"tenantId": "b521d440-3da4-4df0-b155-75044b805a27"
+	}
+}
